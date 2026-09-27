@@ -1,0 +1,25 @@
+import numpy as np
+data = np.array([[30,2,1],[35,4,1.5],[40,6,2],
+                 [45,8,2.5],[32,3,1.2]])
+p = 0.5
+m_fail = np.mean(data[2:],axis=0)
+m_normal = np.mean(data[:2],axis=0)
+for i in range(5):
+    df = np.sum((data-m_fail)**2,axis=1)
+    dn = np.sum((data-m_normal)**2,axis=1)
+    fail = p*np.exp(-df/2)
+    normal = (1-p)*np.exp(-dn/2)
+    r = fail/(fail+normal)
+    p = np.mean(r)
+    m_fail = np.sum(r[:,None]*data,axis=0)/sum(r)
+    m_normal = np.sum((1-r)[:,None]*data,axis=0)/sum(1-r)
+temp, hours, power = 44, 8, 2.4
+x = np.array([temp,hours,power])
+fail = p*np.exp(-np.sum((x-m_fail)**2)/2)
+normal = (1-p)*np.exp(-np.sum((x-m_normal)**2)/2)
+risk = fail/(fail+normal)
+print("Temperature:", temp, "°C")
+print("Usage:", hours, "hours")
+print("Power:", power, "kW")
+print("Failure Risk:", round(risk,2))
+print("Result:", "HIGH RISK" if risk >= 0.5 else "LOW RISK")
