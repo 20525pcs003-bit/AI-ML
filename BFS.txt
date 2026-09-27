@@ -1,0 +1,24 @@
+graph = {
+    "FireStation": ["BuildingA", "BuildingB"],
+    "BuildingA": ["Floor1", "Floor2"],
+    "BuildingB": ["Floor3"],
+    "Floor1": [],
+    "Floor2": [],
+    "Floor3": []
+}
+
+def bfs(start):
+    queue = [start]
+    visited = {start}
+
+    while len(queue) > 0:
+        current = queue.pop(0)
+        print(current, end=" ")
+
+        for child in graph[current]:
+            if child not in visited:
+                visited.add(child)
+                queue.append(child)
+
+print("BFS Traversal:")
+bfs("FireStation")

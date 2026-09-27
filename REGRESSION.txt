@@ -1,0 +1,19 @@
+import matplotlib.pyplot as plt
+x=[25,28,30,32,35]
+y=[120,150,180,210,250]
+n=len(x)
+b1=(n*sum(i*j for i,j in zip(x,y))-sum(x)*sum(y))/(n*sum(i*i for i in x)-sum(x)**2)
+b0=(sum(y)-b1*sum(x))/n
+new_x=33
+pred=b0+b1*new_x
+print("Predicted Sales:",round(pred,2))
+line_y=[b0+b1*i for i in x]
+plt.plot(x,line_y,label="Regression Line")
+plt.scatter(new_x,pred,color="red",s=100,label=f"Predicted = {pred:.2f}")
+plt.xlabel("Temperature")
+plt.ylabel("Sales")
+plt.title("Simple Linear Regression")
+plt.legend()
+plt.grid()
+plt.savefig("regression_output.png")
+plt.show()

@@ -1,0 +1,18 @@
+import random
+class Rabbit:
+    def __init__(self, carrots):
+        self.carrots = carrots
+
+    def __repr__(self):
+        return "Rabbit with %d carrots." % self.carrots
+
+rabbits = [Rabbit(random.randint(1, 50)) for i in range(5)]
+print("Random Rabbits:")
+print(rabbits)
+print()
+def number_of_carrots(rabbit):
+    return rabbit.carrots
+print("Carrots of First Rabbit:", number_of_carrots(rabbits[0]))
+print()
+best_rabbit = max(rabbits, key=number_of_carrots)
+print("Best Rabbit:", best_rabbit)

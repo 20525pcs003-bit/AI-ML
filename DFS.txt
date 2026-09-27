@@ -1,0 +1,25 @@
+network = {
+    "Router": ["PC1", "PC2"],
+    "PC1": ["Printer"],
+    "PC2": ["Server"],
+    "Printer": [],
+    "Server": []
+}
+def dfs(start):
+    stack = [start]
+    visited = []
+    traversal = []
+
+    while stack:
+        node = stack.pop()
+
+        if node not in visited:
+            visited.append(node)
+            traversal.append(node)
+
+            for neighbour in reversed(network[node]):
+                stack.append(neighbour)
+
+    return traversal
+print("Following is the Depth First Search Traversal:")
+print(dfs("Router"))

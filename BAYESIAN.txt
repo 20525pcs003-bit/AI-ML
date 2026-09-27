@@ -1,0 +1,11 @@
+p_intruder = 0.10
+P_ motion_given_intruder = 0.95
+P_motion = 0.20
+P_intruder_given_motion = (p_motion_given_intruder * p_intruder) / p_motion
+print("CCTV Security")
+print(" -----.")
+print("P(Intruder) =", P_intruder)
+print("P(Motion|Intruder) =", P_motion_given_intruder)
+print("P(Motion) =", P_motion)
+print("Intruder Probability:")
+print(round(p_intruder_given_motion, 2))

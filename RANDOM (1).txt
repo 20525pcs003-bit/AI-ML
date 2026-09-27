@@ -1,0 +1,27 @@
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.ensemble import RandomForestClassifier
+import matplotlib.pyplot as plt
+reviews=["I love it","Very good","Excellent","Amazing","I am happy",
+         "I hate it","Very bad","Worst","Terrible","I am unhappy"]
+labels=["Positive","Positive","Positive","Positive","Positive",
+        "Negative","Negative","Negative","Negative","Negative"]
+v=TfidfVectorizer()
+X=v.fit_transform(reviews)
+model=RandomForestClassifier(n_estimators=100,random_state=42).fit(X,labels)
+new=["I really enjoyed this product",
+     "This is an amazing product",
+     "I am very happy with it",
+     "This product is terrible",
+     "I completely dislike this product"]
+p=model.predict(v.transform(new))
+print("Predictions:",p)
+x=range(1,6)
+y=[1 if i=="Positive" else 0 for i in p]
+plt.scatter(x,y,s=100)
+plt.xticks(x,[f"Review {i}" for i in x])
+plt.yticks([0,1],["Negative","Positive"])
+plt.xlabel("Reviews")
+plt.ylabel("Sentiment")
+plt.title("Random Forest Sentiment Analysis")
+plt.savefig("sentiment_graph.png", dpi=300, bbox_inches="tight")
+plt.show()
