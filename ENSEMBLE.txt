@@ -1,0 +1,17 @@
+from sklearn.ensemble import VotingClassifier, RandomForestClassifier
+from sklearn.tree import DecisionTreeClassifier
+X = [[30,10,2,100],[40,20,5,140],[50,35,8,180],
+     [60,55,12,220],[70,70,15,250],[75,80,18,280],
+     [35,15,3,120],[55,45,10,200],[65,65,14,240]]
+y = [0,0,1,2,2,2,0,1,2]
+model = VotingClassifier([
+    ('DT', DecisionTreeClassifier(max_depth=3)),
+    ('RF', RandomForestClassifier(n_estimators=10))
+], voting='hard')
+model.fit(X, y)
+p, m, a, u = 62, 60, 13, 230
+score = .30*p/75 + .30*m/80 + .20*a/18 + .20*u/280
+result = model.predict([[p,m,a,u]])[0]
+risk = ["LOW", "MEDIUM", "HIGH"]
+print("Risk Score:", round(score,2))
+print("Leakage Risk:", risk[result])
