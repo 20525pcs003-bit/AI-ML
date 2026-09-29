@@ -1,0 +1,14 @@
+data = [(1,1),(1,1),(1,0),(0,0),(0,1)]
+for i in range(5):
+    busy = sum(x[0] for x in data)
+    jam_busy = sum(x[1] for x in data if x[0] == 1)
+    jam_free = sum(x[1] for x in data if x[0] == 0)
+p1 = jam_busy / busy
+p0 = jam_free / (len(data)-busy)
+x = int(input("Enter Traffic : "))
+p = p1 if x == 1 else p0
+print("Traffic Jam Probability:", round(p, 2))
+if p >= 0.5:
+    print("Prediction: Traffic Jam")
+else:
+    print("Prediction: No Traffic Jam")

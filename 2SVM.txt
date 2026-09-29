@@ -1,0 +1,20 @@
+# Fruit Classification
+
+X = [[150, 6], [160, 7], [170, 8],
+     [120, 5], [130, 5], [140, 6]]
+
+y = [1, 1, 1, -1, -1, -1]
+
+w1 = 1
+w2 = 1
+b = -150
+def Sum(x1, x2):
+    return w1 * x1 + w2 * x2 + b
+weight = float(input("Enter weight: "))
+size = float(input("Enter size: "))
+
+result = Sum(weight, size)
+if result >= 0:
+    print("Predicted fruit: Apple")
+else:
+    print("Predicted fruit: Orange")

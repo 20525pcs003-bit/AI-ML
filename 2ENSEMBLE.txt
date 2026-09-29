@@ -1,0 +1,21 @@
+training = [60, 70, 80, 90, 50]
+average = sum(training) / len(training)
+print("Training Data:", training)
+while True:
+    x = input("\nEnter new student mark (q to stop): ")
+    if x.lower() == "q":
+        print("Program stopped.")
+        break
+    mark = float(x)
+    m1 = mark
+    m2 = average
+    m3 = (mark + average) / 2
+    final = (m1 + m2 + m3) / 3
+    print("Model 1:", m1)
+    print("Model 2:", m2)
+    print("Model 3:", m3)
+    print("Final Prediction:", round(final, 2))
+    if final >= 50:
+        print("Result: Pass")
+    else:
+        print("Result: Fail")

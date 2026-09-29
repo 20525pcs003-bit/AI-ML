@@ -1,0 +1,30 @@
+from collections import deque
+
+metro = {
+    "central": ["Egmore", "park"],
+    "Egmore": ["central", "Anna nagar"],
+    "park": ["central", "Airport"],
+    "Anna nagar": [],
+    "Airport": []
+}
+
+def bfs(graph, start, destination):
+    visited = set()
+    queue = deque([[start]])
+    visited.add(start)
+
+    while queue:
+        path = queue.popleft()
+        station = path[-1]
+
+        if station == destination:
+            print("Route found:")
+            print(" -> ".join(path))
+            return
+
+        for neighbour in graph[station]:
+            if neighbour not in visited:
+                visited.add(neighbour)
+                queue.append(path + [neighbour])
+
+bfs(metro, "central", "Airport")

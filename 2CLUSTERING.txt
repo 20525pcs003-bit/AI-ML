@@ -1,0 +1,17 @@
+data = [1000, 2000, 5000, 40000, 50000, 70000]
+c1, c2 = 2000, 50000
+for i in range(5):
+    a = [x for x in data if abs(x-c1) < abs(x-c2)]
+    b = [x for x in data if abs(x-c1) >= abs(x-c2)]
+    c1 = sum(a) / len(a)
+    c2 = sum(b) / len(b)
+while True:
+    x = input("\nEnter transaction amount (q to stop): ")
+    if x.lower() == "q":
+        print("Monitoring stopped.")
+        break
+    x = float(x)
+    if abs(x-c1) < abs(x-c2):
+        print("Amount:", x, "-> Low Transaction")
+    else:
+        print("Amount:", x, "-> High Transaction")

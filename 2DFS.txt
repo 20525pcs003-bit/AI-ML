@@ -1,0 +1,32 @@
+def dfs(node):
+    print(node["name"])
+    for child in node.get("options", []):
+        dfs(child)
+atm = {
+    "name": "Main Menu",
+    "options": [
+        {
+            "name": "Withdraw",
+            "options": [
+                {
+                    "name": "withdrawal",
+                    "options": [
+                        {"name": "Savings", "options": []},
+                        {"name": "Current", "options": []}
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Balance Check",
+            "options": []
+        },
+        {
+            "name": "PIN Change",
+            "options": []
+        }
+    ]
+}
+dfs(atm)
+
+
